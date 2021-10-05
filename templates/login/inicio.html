@@ -1,0 +1,101 @@
+{% extends 'login/base.html' %}
+{% block titulo %} Inicio {% endblock titulo%}
+
+{% block contenido %}
+
+<div class="jumbotron p-3 mb-2 bg-dark text-white mb-auto">
+  <center>
+    <h1 class="font-weight-bold center">Bienvenido a JISA</h1>
+    <h2 class="font-italic">Donde todo lo moderno esta al alcance de tus manos</h2>
+  </center>
+
+</div>
+
+<div class="jumbotron mb-auto">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="container mt-4">
+        <h1 class="font-weight-bold center">Automoviles</h1>
+      <p class="font-italic">
+        En este lugar encontraras los automoviles mas actuales del Mundo.
+        Para mas informacion dirigete a la seccion lista o dale click a la imagen.
+      </p>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <a href="{% url 'autos:lista_autos' %}">
+      <div class="carousel slide" id="demo-carousel" data-ride="carousel" style="margin-top: 5%;">
+        <div class="carousel-inner" role="listbox" >
+          {% for a in autos %}
+            {% if forloop.first %}
+              <div class="carousel-item active" >
+            {% else %}
+              <div class="carousel-item" >
+            {% endif %}
+              {% if a.Foto %}
+                <img class="col d-flex justify-content-center" src='{{ a.Foto.url }}' alt=""  style="width: 100%; height: 65%; margin: auto;">
+              {% endif %}
+                <div class="carousel-caption">
+                  <p>{{ a.Marca }} {{ a.Modelo }}</p>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+        </div>
+      </div>
+      </a>
+    </div>
+  
+  </div>
+</div>
+
+
+
+<div class="jumbotron p-3 mb-2 bg-dark text-white mb-auto">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="container mt-4">
+        <h1 class="font-weight-bold center">Motocicletas</h1>
+      <p class="font-italic">
+        En este lugar encontraras las mejores motocicletas del mercado y las mas actuales del Mundo.
+        Para mas informacion dirigete a la seccion lista o dale click a la imagen.
+      </p>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <a href="{% url 'autos:lista_motos' %}">
+      <div class="carousel slide" id="demo-carousell" data-ride="carousel" style="margin-top: 5%; " >
+        <div class="carousel-inner" role="listbox" >
+          {% for m in motos %}
+            {% if forloop.first %}
+              <div class="carousel-item active" >
+            {% else %}
+              <div class="carousel-item" >
+            {% endif %}
+              {% if m.Foto %}
+                <img class="col d-flex justify-content-center" src='{{ m.Foto.url }}' alt=""  style="width: 100%; height: 65%; margin: auto; border: 50px;">
+              {% endif %}
+                <div class="carousel-caption">
+                  <p>{{ m.Marca }} {{ m.Modelo }}</p>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+        </div>
+      </div>
+      </a>
+    </div>
+  
+  </div>
+</div>
+
+
+<script type="text/javascript">
+$('.carousel').carousel({
+  interval: 100
+})
+
+</script>
+  
+
+{% endblock contenido %}

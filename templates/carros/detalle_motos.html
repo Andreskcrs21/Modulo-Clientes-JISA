@@ -1,0 +1,42 @@
+{% extends 'login/base.html' %}
+{% block titulo %} Detalles {% endblock titulo%}
+
+
+{% block contenido %}
+
+<div class="container">
+  <div class="jumbotron mt-4">
+    {% for m in motos %}  
+    <center> <h1 class="font-weight-bold center">{{m.Marca}} {{m.Modelo}}</h1> </center>
+    <div class="row">
+      <div class="col-md-7">
+        <center><img src={{m.Foto.url}}  width="454px" height="312" style="border: 2px outset; color: orange;"/></span></center>
+
+      </div>
+      <div class="col-md-5">
+        <div class="container">
+          <h3>Detalles</h3>
+          <p>Marca: {{m.Marca}}</p>
+          <p>Modelo: {{m.Modelo}}</p>
+          <p>Año: {{m.Año}}</p>
+          <p>Precio: ${{m.Precio}}</p>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+      <br><center><h5>¿Quieres cotizar esta moto?</h5></center><br>
+      <center><a href="https://api.whatsapp.com/send?phone=0997778422&text=Hola, Nececito mas informacion!" class="btn btn-primary" target="_blank">Envianos un mensaje al WhatsApp</a></center>
+  </div>
+</div>
+
+
+  <script>
+     document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+  });
+  </script>
+
+
+{% endblock contenido %}
